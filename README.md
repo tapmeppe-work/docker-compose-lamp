@@ -12,14 +12,6 @@ A basic LAMP stack environment built using Docker Compose. It consists of the fo
 
 As of now, we have several different PHP versions. Use appropriate php version as needed:
 
-- 5.4.x
-- 5.6.x
-- 7.1.x
-- 7.2.x
-- 7.3.x
-- 7.4.x
-- 8.0.x
-- 8.1.x
 - 8.2.x
 - 8.3.x
 
@@ -172,7 +164,7 @@ phpMyAdmin is configured to run on port 8080. Use following default credentials.
 
 http://localhost:8080/  
 username: root  
-password: tiger
+password: qw3rtzu10p
 
 ## Xdebug
 
