@@ -6,3 +6,6 @@
 /www/**
 .DS_Store
 /buildtest
+
+# PM (02.03.2024)
+desktop.ini
