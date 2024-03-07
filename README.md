@@ -1,7 +1,7 @@
 # LAMP stack built with Docker Compose
 
 ## Preamble
-![Landing Page](https://user-images.githubusercontent.com/43859895/141092846-905eae39-0169-4fd7-911f-9ff32c48b7e8.png)
+![Landing Page](screenshot.png)
 
 A basic LAMP stack environment built using Docker Compose. It consists of the following:
 - Apache
@@ -55,4 +55,4 @@ phpMyAdmin is configured to run on port 7502. Use following default credentials.
 - Password: qw3rtzu10p
 
 ---
-### @since PM (06.03.2024)
+### @since PM (07.03.2024)
