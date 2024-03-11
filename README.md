@@ -44,6 +44,17 @@ cp .env.template .env
 docker compose up -d
 ```
 
+### docker with non-default yaml files
+- To start (and stop) a docker image with a yaml file other than *docker-compose.yml* and *docker-compose.yaml*, use the following command(s).
+```shell
+docker compose -f __PATH_TO_YAML_FILE__ up -d
+docker compose -f __PATH_TO_YAML_FILE__ down
+```
+- For example starting (and stopping) a docker image containing a redis server would look as follow:
+```shell
+docker compose -f docker-compose.redis.yml up -d
+docker compose -f docker-compose.redis.yml down
+```
 
 ## User interfaces
 The apache server is configured to run on port 7501. Use following default credentials.

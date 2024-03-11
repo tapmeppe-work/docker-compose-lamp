@@ -1,0 +1,13 @@
+# @since PM (11.03.2024) this script should be used in case redis needs to be added to the standard LAMP.
+
+version: "3"
+
+include:
+  - docker-compose.yml
+
+services:
+  redis:
+    container_name: "${COMPOSE_PROJECT_NAME}-redis"
+    image: redis:latest
+    ports:
+      - "127.0.0.1:${HOST_MACHINE_REDIS_PORT}:6379"
