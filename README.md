@@ -26,7 +26,7 @@ Additionally an [alternative approach](https://medium.com/@mikez_dg/how-to-set-u
 - Finally run the following commands in the console.
 ```shell
 git clone https://github.com/tapmeppe-work/dockeroolamp.git
-cd __PATH__/__TO__/__CONTAINER__/
+cd __PATH__/__TO__/__ENVIRONMENT__/
 wsl
 cp .env.template .env
 docker compose up -d
@@ -39,10 +39,13 @@ docker compose up -d
 - Finally run the following commands in the terminal.
 ```shell
 git clone https://github.com/tapmeppe-work/dockeroolamp.git
-cd __PATH__/__TO__/__CONTAINER__/
+cd __PATH__/__TO__/__ENVIRONMENT__/
 cp .env.template .env
 docker compose up -d
 ```
+
+### What & where is the environment (__PATH__/__TO__/__ENVIRONMENT__/)
+It represents the directory in the Docker repository has been cloned via the command `git clone`. So basically the directory in which __THIS__ `README.md` is located.
 
 ### docker with non-default yaml files
 - To start (and stop) a docker image with a yaml file other than *docker-compose.yml* and *docker-compose.yaml*, use the following command(s).
