@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "wp-content/plugins/tapmeppe",
+			"name": "plugin",
+		},
+		{
+			"path": "wp-content/themes/tapmeppe",
+			"name": "theme",
+		},
+		{
+			"path": "tapmeppe",
+			"name": "zyxw",
+		},
+	],
+	"settings": {}
+}
