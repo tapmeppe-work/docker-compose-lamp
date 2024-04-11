@@ -1,0 +1,39 @@
+# PM (xx.02.2024)
+# @see https://github.com/github/gitignore/blob/main/WordPress.gitignore
+
+# core
+/wp-content/*
+!/wp-content/plugins
+!/wp-content/themes
+!/wp-content/tapmeppe
+
+# plugins
+/wp-content/plugins/*
+!/wp-content/plugins/admin-site-enhancements
+# !/wp-content/plugins/jetpack
+!/wp-content/plugins/ninja-forms
+!/wp-content/plugins/polylang
+!/wp-content/plugins/tapmeppe
+!/wp-content/plugins/woocommerce
+!/wp-content/plugins/wordfence
+!/wp-content/plugins/wordpress-seo
+!/wp-content/plugins/wp-super-cache
+
+# themes
+/wp-content/themes/*
+!/wp-content/themes/storefront
+!/wp-content/themes/tapmeppe
+
+# others
+desktop.ini
+/.htaccess
+/index.php
+/license.txt
+/phpinfo.php
+/readme.html
+/wp-*.php
+/xmlrpc.php
+*.log
+/wp-admin/
+/wp-includes/
+node_modules/

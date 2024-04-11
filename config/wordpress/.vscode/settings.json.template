@@ -1,0 +1,24 @@
+{
+	"files.exclude": {
+		// global settings
+		"**/desktop.ini": true,
+		"**/node_modules": true,
+		"**/vendor": true,
+
+		// wordpress settings
+		// WARNING: this leads to malfunctioning of the PHP intellisense
+		"index.php": true,
+		"license.txt": true,
+		"readme.html": true,
+		"wp-*.php": true,
+		"xmlrpc.php": true,
+		"wp-admin": true,
+		// "wp-admin/*": true,
+		"wp-content/up*": true, //upload, upgrade
+		"wp-content/*.*": true,
+		"wp-content/*/*.php": true,
+		"wp-content/plugins/[!t][!a][!p]*": true,
+		"wp-content/themes/twenty*": true,
+		"wp-includes": true,
+	},
+}

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "services/www",
+			"name": "webserver",
+		},
+		{
+			"path": "services/helpers",
+			"name": "tasks",
+		},
+		{
+			"path": ".",
+			"name": "docker",
+		},
+	],
+	"settings": {}
+}

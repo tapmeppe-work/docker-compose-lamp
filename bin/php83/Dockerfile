@@ -67,7 +67,7 @@ RUN cd /usr/local/src && \
 
 # Other PHP8 Extensions
 
-RUN docker-php-ext-install pdo_mysql && \
+RUN docker-php-ext-install pdo_- && \
     docker-php-ext-install pdo_sqlite && \
     docker-php-ext-install bcmath && \
     docker-php-ext-install mysqli && \
