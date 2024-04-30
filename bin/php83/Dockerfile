@@ -67,7 +67,7 @@ RUN cd /usr/local/src && \
 
 # Other PHP8 Extensions
 
-RUN docker-php-ext-install pdo_- && \
+RUN docker-php-ext-install pdo_mysql && \
     docker-php-ext-install pdo_sqlite && \
     docker-php-ext-install bcmath && \
     docker-php-ext-install mysqli && \
@@ -100,3 +100,8 @@ RUN a2enmod rewrite headers
 
 # Cleanup
 RUN rm -rf /usr/src/*
+
+# PM (13.04.2024) making sure the executive rights are set
+# @see https://www.pluralsight.com/blog/it-ops/linux-file-permissions
+RUN mkdir -p /var/www/html
+RUN chmod a=rwx /var/www/html

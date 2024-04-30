@@ -34,7 +34,7 @@
                             <li>PHP <?= phpversion(); ?></li>
                             <li>
                                 <?php
-                                $link = mysqli_connect("database", "root", $_ENV['MYSQL_ROOT_PASSWORD'], null);
+                                $link = mysqli_connect($_ENV['MYSQL_HOST'], $_ENV['MYSQL_USER'], $_ENV['MYSQL_PASSWORD'], $_ENV['MYSQL_DATABASE']);
 
                                 /* check connection */
                                 if (mysqli_connect_errno()) {

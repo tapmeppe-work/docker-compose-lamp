@@ -1,12 +1,50 @@
-/.env
-# /.vscode
-# /config/* 
-/data/*
-/logs/*
-# /www/** > /services/www/**
-.DS_Store
-/buildtest
+# @since PM (12.04.2024)
 
-# PM (02.03.2024)
+# project
+/.env
+# /docker-compose.redis.yml
+/data/mysql/*
+/logs/*
+/services/*
+!/services/helpers
+/services/helpers/*
+!/services/www
+/services/www/*
+
+# miscellaneous
+# IDE: ignore local development directory & file except the configuration files
+.DS_Store*
+ehthumbs.db
+Thumbs.db
 desktop.ini
+*.lnk
+*.pem
+*.backup
+*.backup.*
+*.ignore
+*.ignore.*
+*.log
+node_modules/*
+dist/*
+package-lock.json
+# !package.json
+vendor/*
+composer.lock
+# !composer.json
+.env
+# !.env.*
 # !.gitkeep
+# !.gitignore
+# !/.vscode
+/.vscode/*
+!/.vscode/*.json
+!/.vscode/spellright.dict
+# !/CHANGELOG.md
+# !/README.md
+# !/TODO.md
+# !/zyxw
+/zyxw/*
+!/zyxw/private
+/zyxw/private/*
+!/zyxw/private/.gitkeep
+!/zyxw/public

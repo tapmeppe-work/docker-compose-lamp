@@ -1,13 +1,20 @@
-# PM (xx.02.2024)
+# PM (xx.02.2024) WordPress core, plugins & themes are tracked.
 # @see https://github.com/github/gitignore/blob/main/WordPress.gitignore
 
 # core
+# /.htaccess
+# /index.php
+/license.txt
+# /readme.html
+# /wp-*.php
+/wp-config.inc
+# /xmlrpc.php
+# /wp-admin/
+# /wp-includes/
 /wp-content/*
-!/wp-content/plugins
-!/wp-content/themes
-!/wp-content/tapmeppe
 
 # plugins
+!/wp-content/plugins
 /wp-content/plugins/*
 !/wp-content/plugins/admin-site-enhancements
 # !/wp-content/plugins/jetpack
@@ -20,20 +27,45 @@
 !/wp-content/plugins/wp-super-cache
 
 # themes
+!/wp-content/themes
 /wp-content/themes/*
 !/wp-content/themes/storefront
 !/wp-content/themes/tapmeppe
 
-# others
+# miscellaneous
+# IDE: ignore local development directory & file except the configuration files
+.DS_Store*
+ehthumbs.db
+Thumbs.db
 desktop.ini
-/.htaccess
-/index.php
-/license.txt
-/phpinfo.php
-/readme.html
-/wp-*.php
-/xmlrpc.php
+*.lnk
+*.pem
+*.backup
+*.backup.*
+*.ignore
+*.ignore.*
 *.log
-/wp-admin/
-/wp-includes/
-node_modules/
+node_modules/*
+dist/*
+package-lock.json
+# !package.json
+vendor/*
+composer.lock
+# !composer.json
+.env
+# !.env.*
+# !.gitkeep
+# !.gitignore
+# !/.vscode
+/.vscode/*
+!/.vscode/*.json
+!/.vscode/spellright.dict
+# !/CHANGELOG.md
+# !/README.md
+# !/TODO.md
+# !/zyxw
+/zyxw/*
+!/zyxw/private
+/zyxw/private/*
+!/zyxw/private/.gitkeep
+!/zyxw/public

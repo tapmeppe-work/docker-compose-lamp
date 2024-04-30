@@ -17,5 +17,5 @@
 # @see https://docs.docker.com/reference/cli/docker/compose/run/
 
 docker-compose \
-  -f docker-compose.yaml \
+  -f docker-compose.yml \
    run --rm helpers php $@

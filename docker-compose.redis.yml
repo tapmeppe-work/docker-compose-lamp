@@ -7,7 +7,7 @@ include:
 
 services:
   redis:
-    container_name: "${COMPOSE_PROJECT_NAME}-redis"
+    container_name: "Database-redis"
     image: redis:latest
     ports:
-      - "127.0.0.1:${PORT_REDIS-7504}:6379"
+      - "127.0.0.1:${PORT_REDIS-7505}:6379"

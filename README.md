@@ -9,6 +9,7 @@ A basic LAMP stack environment built using Docker Compose. It consists of the fo
   - WordPress v6.4.3 (06.03.2024)
 - MySQL
 - phpMyAdmin
+- Adminer
 - Redis
 
 For more information see the [source repository](https://github.com/sprintcube/docker-compose-lamp).<br>
@@ -28,7 +29,7 @@ Additionally an [alternative approach](https://medium.com/@mikez_dg/how-to-set-u
 git clone https://github.com/tapmeppe-work/dockeroolamp.git
 cd __PATH__/__TO__/__ENVIRONMENT__/
 wsl
-cp .env.template .env
+COPY .env.template .env
 docker compose up -d
 ```
 
@@ -60,13 +61,13 @@ docker compose -f docker-compose.redis.yml down
 ```
 
 ## User interfaces
-The apache server is configured to run on port 7501. Use following default credentials.
-- URL: http://localhost:7501/
-
-phpMyAdmin is configured to run on port 7502. Use following default credentials.
-- URL: http://localhost:7502/ 
-- Username: root  
-- Password: qw3rtzu10p
+Unless configured otherwise:
+- The [WordPress instance](https://wordpress.org/) is configured to run on [port 7501](http://localhost:7501/).
+  - URL: http://localhost:7501/
+- The [MySQL client](https://www.phpmyadmin.net/) is configured to run on [port 7502](http://localhost:7502/). Use following default credentials.
+  - **URL:** http://localhost:7502/ 
+  - **Username:** root  
+  - **Password:** qw3rtzu10p
 
 ---
 ### @since PM (07.03.2024)

@@ -1,90 +1,93 @@
 # @see https://docs.docker.com/compose/environment-variables/env-file/
 # https://ioflood.com/blog/docker-compose-restart-command-guide-with-examples
 
-version: "3"
+# version: "3.1"
 
 services:
-  webserver:
+  application:
     build:
       context: ./bin/${PHPVERSION-php83}
-    container_name: "${COMPOSE_PROJECT_NAME}-${PHPVERSION-php83}"
+    container_name: "Application-${PHPVERSION-php83}"
     restart: "on-failure"
     ports:
-      - "${PORT_WEBSERVER-7501}:80"
-      # - "${HOST_MACHINE_WEBSERVER_SECURE_PORT}:443"
+      - "${PORT_APPLICATION-7501}:80"
+      # - "${PORT_APPLICATION_SECURE}:443"
     links:
       - database
     volumes:
-      - ${DOCUMENT_ROOT_WEBSERVER-./services/www}:/var/www/html:rw
-      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
-      - ${DIR_SSL-./config/ssl}:/etc/apache2/ssl/
-      - ${DIR_VHOSTS-./config/vhosts}:/etc/apache2/sites-enabled
-      - ${DIR_LOGS_APACHE-./logs/apache2}:/var/log/apache2
-      - ${DIR_LOGS_XDEBUG-./logs/xdebug}:/var/log/xdebug
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./config/ssl:/etc/apache2/ssl/
+      - ./config/vhosts:/etc/apache2/sites-enabled
+      - ./logs/apache2:/var/log/apache2
+      - ./logs/xdebug:/var/log/xdebug
+      - ./services/www:/var/www/html
+      # - ./services/www:/var/www/html:rw
     environment:
-      DOCUMENT_ROOT_APACHE: ${DOCUMENT_ROOT_APACHE-/var/www/html}
+      DOCUMENT_ROOT_APACHE: /var/www/html
+      MYSQL_DATABASE: ${MYSQL_DATABASE-docker}
+      MYSQL_HOST: database
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD-qw3rtzu10p}
+      MYSQL_PORT: ${PORT_MYSQL-7504}
+      MYSQL_USER: ${MYSQL_USER-root}
       PMA_PORT: ${PORT_PMA-7502}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD-qw3rtzu10p}
-      MYSQL_USER: ${MYSQL_DOCKER_USER-docker}
-      MYSQL_PASSWORD: ${MYSQL_DOCKER_PASSWORD-docker}
-      MYSQL_DATABASE: ${MYSQL_DOCKER_DATABASE-docker}
-      MYSQL_PORT: ${PORT_MYSQL-7503}
       XDEBUG_CONFIG: "client_host=host.docker.internal remote_port=${PORT_XDEBUG-9003}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
   helpers:
     build:
       context: ./bin/${PHPVERSION-php83}-cli
-    container_name: "${COMPOSE_PROJECT_NAME}-helpers-${PHPVERSION-php83}"
+    container_name: "Helpers-${PHPVERSION-php83}"
     restart: "on-failure"
     links:
       - database
     volumes:
-      - ${DOCUMENT_ROOT_HELPERS-./services/helpers}:/var/www/helpers:rw
+      - ./services/helpers:/var/www/helpers
+      # - ./services/helpers:/var/www/helpers:rw
     working_dir: "/var/www/helpers"
-    security_opt:
-      - "label=disable"
+    # environment:
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: "phpMyAdmin"
+    restart: "on-failure"
+    links:
+      - database
     environment:
-      PMA_PORT: ${PORT_PMA-7502}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD-qw3rtzu10p}
-      MYSQL_USER: ${MYSQL_DOCKER_USER-docker}
-      MYSQL_PASSWORD: ${MYSQL_DOCKER_PASSWORD-docker}
-      MYSQL_DATABASE: ${MYSQL_DOCKER_DATABASE-docker}
-      MYSQL_PORT: ${PORT_MYSQL-7503}
+      MEMORY_LIMIT: ${MEMORY_LIMIT-512M}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD-qw3rtzu10p}
+      MYSQL_USER: ${MYSQL_USER-root}
+      PMA_HOST: ${MYSQL_HOST-database}
+      PMA_PASSWORD: ${MYSQL_PASSWORD-qw3rtzu10p}
+      PMA_PORT: 3306
+      PMA_USER: ${MYSQL_USER-root}
+      UPLOAD_LIMIT: ${UPLOAD_LIMIT-512M}
+    ports:
+      - "${PORT_PMA-7502}:80"
+      # - "${PORT_PMA_SECURE}:443"
+    volumes:
+      - /sessions
+      - ./config/php/php.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+  adminer:
+    image: adminer
+    container_name: "Adminer"
+    restart: "on-failure"
+    links:
+      - database
+    ports:
+      - "${PORT_ADMER-7503}:8080"
   database:
     build:
       context: "./bin/${DATABASE-mariadb106}"
-    container_name: "${COMPOSE_PROJECT_NAME}-${DATABASE-mariadb106}"
+    container_name: "Database-${DATABASE-mariadb106}"
     restart: "on-failure"
     ports:
-      - "127.0.0.1:${PORT_MYSQL-7503}:3306"
+      - "127.0.0.1:${PORT_MYSQL-7504}:3306"
     volumes:
-      - ${DIR_MYSQL_INITDB-./config/initdb}:/docker-entrypoint-initdb.d
-      - ${DIR_MYSQL_DATA-./data/mysql}:/var/lib/mysql
-      - ${DIR_LOGS_MYSQL-./logs/mysql}:/var/log/mysql
+      - ./config/initdb:/docker-entrypoint-initdb.d
+      - ./data/mysql:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD-qw3rtzu10p}
-      MYSQL_DATABASE: ${MYSQL_DOCKER_DATABASE-docker}
-      MYSQL_USER: ${MYSQL_DOCKER_USER-docker}
-      MYSQL_PASSWORD: ${MYSQL_DOCKER_PASSWORD-docker}
-  phpmyadmin:
-    image: phpmyadmin
-    container_name: "${COMPOSE_PROJECT_NAME}-phpmyadmin"
-    links:
-      - database
-    environment:
-      PMA_HOST: database
-      PMA_PORT: 3306
-      PMA_USER: root
-      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD-qw3rtzu10p}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD-qw3rtzu10p}
-      MYSQL_USER: ${MYSQL_DOCKER_USER-docker}
-      MYSQL_PASSWORD: ${MYSQL_DOCKER_PASSWORD-docker}
-      UPLOAD_LIMIT: ${UPLOAD_LIMIT-512M}
-      MEMORY_LIMIT: ${MEMORY_LIMIT-512M}
-    ports:
-      - "${PORT_PMA-7502}:80"
-      # - "${HOST_MACHINE_PMA_SECURE_PORT}:443"
-    volumes:
-      - /sessions
-      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
+      # 'docker' is the default value here below
+      # MYSQL_DATABASE: docker
+      # MYSQL_USER: docker
+      MYSQL_PASSWORD: qw3rtzu10p
