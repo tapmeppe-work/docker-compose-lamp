@@ -45,27 +45,6 @@ services:
       # - ./services/helpers:/var/www/helpers:rw
     working_dir: "/var/www/helpers"
     # environment:
-  phpmyadmin:
-    image: phpmyadmin
-    container_name: "phpMyAdmin"
-    restart: "on-failure"
-    links:
-      - database
-    environment:
-      MEMORY_LIMIT: ${MEMORY_LIMIT-512M}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD-qw3rtzu10p}
-      MYSQL_USER: ${MYSQL_USER-root}
-      PMA_HOST: ${MYSQL_HOST-database}
-      PMA_PASSWORD: ${MYSQL_PASSWORD-qw3rtzu10p}
-      PMA_PORT: 3306
-      PMA_USER: ${MYSQL_USER-root}
-      UPLOAD_LIMIT: ${UPLOAD_LIMIT-512M}
-    ports:
-      - "${PORT_PMA-7502}:80"
-      # - "${PORT_PMA_SECURE}:443"
-    volumes:
-      - /sessions
-      - ./config/php/php.ini:/usr/local/etc/php/conf.d/php-phpmyadmin.ini
   adminer:
     image: adminer
     container_name: "Adminer"
